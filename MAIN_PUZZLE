@@ -1,0 +1,208 @@
+#include<stdio.h>
+#include<stdlib.h>
+int table[4][4]={
+    {1,2,3,4},
+    {5,6,7,8},
+    {9,10,11,12},
+    {13,14,15, }
+};
+int sorted_table[4][4]={
+    {1,2,3,4},
+    {5,6,7,8},
+    {9,10,11,12},
+    {13,14,15, }
+};
+int r,i,j;
+int shuffle()
+{
+  for (int i=0; i<4; i++)
+  {
+     for (int j = 0; j < 4; j++)
+     {
+        r =rand()%4;
+        int temp =  table[i][j];
+        table[i][j] =  table[r][j];
+        table[r][j] = temp;
+     }
+  }
+  for(int i=0;i<4;i++)
+  {
+      for(int j=0;j<4;j++)
+      {
+        printf("%d ",table[i][j]);  
+      }
+      printf("\n");
+  }
+}
+void left()
+{
+    int element;
+    printf("Enter the element: ");
+    scanf("%d",&element);
+    
+        for(int i=0;i<4;i++)
+        {
+            for(int j=0;j<4;j++)
+            { 
+                if(element == table[i][j] && element == 0)
+                {
+                    int temp;
+                    temp=table[i][j];
+                    table[i][j]=table[i][j-1];
+                    table[i][j-1]=temp;
+                }
+            }
+        }
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            printf("%d ",table[i][j]);
+        }
+        printf("\n");
+    }
+    if(table[4][4]== sorted_table[4][4])
+    {
+        printf("YOU WIN");
+    }
+}
+void right()
+{
+    int element1;
+    int flag = 0;
+    printf("Enter the element: ");
+    scanf("%d",&element1);
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        { 
+            if((element1 == table[i][j] && element1 == 0) && flag == 0)
+            {
+                int temp;
+                temp=table[i][j];
+                table[i][j]=table[i][j+1];
+                table[i][j+1]=temp;
+                flag = 1;
+                break;
+            }
+        }
+    }
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            printf("%d ",table[i][j]);
+        }
+        printf("\n");
+    }
+    if(table[4][4]== sorted_table[4][4])
+    {
+        printf("YOU WIN");
+    }
+}
+void up()
+{
+   int element1;
+    printf("Enter the element: ");
+    scanf("%d",&element1);
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        { 
+            if(element1 == table[i][j] && element1 == 0)
+            {
+                int temp;
+                temp=table[i][j];
+                table[i][j]=table[i-1][j];
+                table[i-1][j]=temp;
+                break;
+            }
+        }
+    }
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            printf("%d ",table[i][j]);
+        }
+        printf("\n");
+    } 
+    if(table[4][4]== sorted_table[4][4])
+    {
+        printf("YOU WIN");
+    }
+}
+void down()
+{
+   int element1;
+   int flag = 0;
+    printf("Enter the element: ");
+    scanf("%d",&element1);
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        { 
+            if((element1 == table[i][j] && element1 == 0) && flag == 0)
+            {
+                int temp;
+                temp=table[i][j];
+                table[i][j]=table[i+1][j];
+                table[i+1][j]=temp;
+                flag=1;
+                break;
+            }
+        }
+    }
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            printf("%d ",table[i][j]);
+        }
+        printf("\n");
+    } 
+    if(table[4][4]== sorted_table[4][4])
+    {
+        printf("YOU WIN");
+    }
+}
+int main()
+{
+    shuffle();
+    int choice;
+    while(1) {
+    printf("1.L-Left\n2.R-Right\n3.U-Up\n4.D-Down\n5.Q-Quit\nEnter the choice : ");
+    scanf("%d",&choice);
+    
+    
+    if(choice==5)
+    {
+        break;
+    }
+    
+    switch(choice)
+    {
+        case 1:
+        {
+            left();
+            break;
+        }
+        case 2:
+        {
+            right();
+            break;
+        }
+        case 3:
+        {
+            up();
+            break;
+        }
+        case 4:
+        {
+            down();
+            break;
+        }
+    }
+    }
+    return 0;
+}
